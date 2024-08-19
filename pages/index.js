@@ -26,6 +26,8 @@ export default function Home() {
   const projecttitle = "Our Projects";
   const projectsubtitle =
     "Stay in the know with insights from industry experts.";
+  const link = "/project"; // Ensure this is a valid string
+
   const maxPostsToShow = 6; // Maximum number of blog posts to show initially
   const [blogsToShow, setBlogsToShow] = useState(maxPostsToShow); // State to track number of blogs to show
 
@@ -51,20 +53,6 @@ export default function Home() {
           subtitle={servicesubtitle}
           servicetitle={servicetitle} // Pass servicetitle to CardTitle
         /> */}
-        <div className="text-left mb-0 flex justify-between items-end self-stretch">
-          <div>
-            <h className="text-h2 font-bold text-gray-800 dark:text-white">
-              Our Services
-            </h>
-            <p className="mt-1 text-gray-600 dark:text-neutral-400">
-              {/* {subtitle} */}
-              Stay in the know with insights from industry experts.
-            </p>
-          </div>
-          <div className="flex items-end">
-            {/* <Button>{` ${servicetitle}`}</Button> */}
-          </div>
-        </div>
       </Container>
       {/* Slider Section */}
       <Slider /> {/* Assuming this is correctly integrated */}
@@ -73,7 +61,8 @@ export default function Home() {
         <CardTitle
           title={projecttitle}
           subtitle={projectsubtitle}
-          servicetitle={projecttitle} // Pass projecttitle to CardTitle
+          servicetitle={projecttitle}
+          link={link} // Pass the link prop here
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
