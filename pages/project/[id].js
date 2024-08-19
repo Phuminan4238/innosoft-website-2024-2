@@ -28,7 +28,7 @@ export default function ProjectDetail() {
         <img
           src={project.imageUrl}
           // alt={service.title}
-          className="w-full h-[560px] mt-4 rounded-lg"
+          className="w-full h-[560px] mt-4 rounded-lg object-contain"
         />
       </Container>
       <Container className="pt-10">
