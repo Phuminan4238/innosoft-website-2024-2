@@ -47,15 +47,10 @@ export default function Home() {
       <Client />
       <div className="py-6"></div>
       {/* Services Section */}
-      <Container>
-        {/* <CardTitle
-          title={servicetitle}
-          subtitle={servicesubtitle}
-          servicetitle={servicetitle} // Pass servicetitle to CardTitle
-        /> */}
-      </Container>
+      <Container></Container>
       {/* Slider Section */}
       <Slider /> {/* Assuming this is correctly integrated */}
+      <div className="py-6"></div>
       {/* Projects Section */}
       <Container>
         <CardTitle

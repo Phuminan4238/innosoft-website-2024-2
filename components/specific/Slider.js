@@ -63,38 +63,25 @@ const Slider = () => {
             <div
               key={service.id}
               className="relative lg:col-span-1 xl:col-span-3 h-[360px]"
-              // href="/service"
+              href="/service"
             >
-              <div className="flex flex-col justify-start w-full  border-solid border-2 p-0 rounded-lg dark:bg-trueGray-800 relative">
-                {/* Image */}
-                <img
-                  src={service.imageUrl}
-                  alt={service.title}
-                  className="object-cover rounded-lg xl:col-span-3 h-[340px] w-full"
-                />
-                {/* Title Overlay */}
-                <p className="absolute bottom-4 left-4 text-white text-[40px] font-bold font-Raleway">
-                  {service.title}
-                </p>
-              </div>
+              {" "}
+              <a href="/service">
+                <div className="flex flex-col justify-start w-full  border-solid border-2 p-0 rounded-lg dark:bg-trueGray-800 relative">
+                  {/* Image */}
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="object-cover rounded-lg xl:col-span-3 h-[340px] w-full"
+                  />
+                  {/* Title Overlay */}
+                  <p className="absolute bottom-4 left-4 text-white text-[40px] font-bold font-Raleway">
+                    {service.title}
+                  </p>
+                </div>
+              </a>
             </div>
           ))}
-        </div>
-        <div className="flex justify-center pt-4">
-          {/* Previous Slide Arrow */}
-          <button
-            className="text-4xl text-gray-500 dark:text-white mr-2"
-            onClick={goToPrevSlide}
-          >
-            <ChevronLeftIcon className="h-10 w-10 text-gray-500" />
-          </button>
-          {/* Next Slide Arrow */}
-          <button
-            className="text-4xl text-gray-500 dark:text-white ml-2"
-            onClick={goToNextSlide}
-          >
-            <ChevronRightIcon className="h-10 w-10 text-gray-500" />
-          </button>
         </div>
       </div>
     </div>
