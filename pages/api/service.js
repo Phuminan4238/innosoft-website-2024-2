@@ -7,7 +7,7 @@ const services = [
     description:
       "Utilize advanced analytical techniques to uncover hidden patterns and insights from your data, driving informed decision-making and strategic planning.",
     imageUrl:
-      "https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+      "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=3051&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const services = [
     description:
       "Create user-centric designs that not only look stunning but also provide an intuitive and engaging user experience across all digital platforms.",
     imageUrl:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHx8fGVufDB8MHx8&auto=format&fit=crop&w=1050&q=80",
+      "https://plus.unsplash.com/premium_photo-1661770132071-026114fffb61?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGVzaWdufGVufDB8fDB8fHww",
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const services = [
     description:
       "Offer comprehensive training programs to equip your team with the necessary skills and knowledge to excel in the ever-evolving tech landscape.",
     imageUrl:
-      "https://images.unsplash.com/photo-1506812574058-fc75fa93fead?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHx8&auto=format&fit=crop&w=1050&q=80",
+      "https://plus.unsplash.com/premium_photo-1661763874747-405eb7388c58?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 

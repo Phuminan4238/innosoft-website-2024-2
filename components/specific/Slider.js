@@ -62,7 +62,7 @@ const Slider = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="relative lg:col-span-1 xl:col-span-3 h-[360px]"
+              className="relative lg:col-span-1 xl:col-span-3 h-[480px]"
               href="/service"
             >
               {" "}
@@ -72,7 +72,7 @@ const Slider = () => {
                   <img
                     src={service.imageUrl}
                     alt={service.title}
-                    className="object-cover rounded-lg xl:col-span-3 h-[340px] w-full"
+                    className="object-cover rounded-lg xl:col-span-3 h-[480px] w-full"
                   />
                   {/* Title Overlay */}
                   <p className="absolute bottom-4 left-4 text-white text-[40px] font-bold font-Raleway">
