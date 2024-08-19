@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import projectsData from "./api/projects"; // Import projects data
 
 export default function Projects() {
-  const [selectedTab, setSelectedTab] = useState("Data");
+  const [selectedTab, setSelectedTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter projects based on selected tab and search query
@@ -33,7 +33,7 @@ export default function Projects() {
           <div className="flex items-center justify-between mb-6">
             {/* Column 1: Tabs */}
             <div className="flex space-x-8">
-              {["Data", "Design", "Development", "Training"].map(
+              {["All", "Data", "Design", "Development", "Training"].map(
                 (tab) => (
                   <button
                     key={tab}

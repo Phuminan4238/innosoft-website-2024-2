@@ -58,7 +58,6 @@ const Slider = () => {
         <button
           className="text-4xl text-gray-500 dark:text-white ml-2"
           onClick={goToNextSlide}
-          
         >
           <ChevronRightIcon className="h-10 w-10 text-gray-500" />
         </button>

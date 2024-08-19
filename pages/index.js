@@ -12,6 +12,7 @@ import CardBlog from "@/components/specific/CardBlog"; // Card component for blo
 import Contact from "@/components/specific/Contact"; // Contact component
 import Footer from "@/components/layout/Footer"; // Footer component
 import Client from "@/components/specific/Client"; // Client section component
+import Button from "@/components/common/Button";
 
 // API data
 import projects from "./api/projects"; // Importing projects data from the API
@@ -45,11 +46,25 @@ export default function Home() {
       <div className="py-6"></div>
       {/* Services Section */}
       <Container>
-        <CardTitle
+        {/* <CardTitle
           title={servicetitle}
           subtitle={servicesubtitle}
           servicetitle={servicetitle} // Pass servicetitle to CardTitle
-        />
+        /> */}
+        <div className="text-left mb-0 flex justify-between items-end self-stretch">
+          <div>
+            <h className="text-h2 font-bold text-gray-800 dark:text-white">
+              Our Services
+            </h>
+            <p className="mt-1 text-gray-600 dark:text-neutral-400">
+              {/* {subtitle} */}
+              Stay in the know with insights from industry experts.
+            </p>
+          </div>
+          <div className="flex items-end">
+            {/* <Button>{` ${servicetitle}`}</Button> */}
+          </div>
+        </div>
       </Container>
       {/* Slider Section */}
       <Slider /> {/* Assuming this is correctly integrated */}
@@ -90,7 +105,8 @@ export default function Home() {
               title={blog.title}
               description={blog.description}
               imageUrl={blog.imageUrl}
-              linkUrl={`/blog/${blog.id}`} // Dynamically generate link URL based on blog ID
+              // linkUrl={`/blog/${blog.id}`} // Dynamically generate link URL based on blog ID
+              linkUrl={`https://medium.com`} // Replace
               showButton={true} // Show the button on all cards
               isIndex={true} // Assuming you have an isIndex prop
             />
