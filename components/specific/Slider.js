@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Container from "../layout/Container";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 import services from "@/pages/api/service";
 
 const Slider = () => {
@@ -30,15 +29,19 @@ const Slider = () => {
         {services.map((service) => (
           <div
             key={service.id}
-            className="lg:col-span-1 xl:col-span-3 h-[360px]"
+            className="relative lg:col-span-1 xl:col-span-3 h-[360px]"
           >
-            <div className="flex flex-col justify-start w-full h-fullborder-solid border-2 p-0 rounded-lg  dark:bg-trueGray-800">
+            <div className="flex flex-col justify-start w-full  border-solid border-2 p-0 rounded-lg dark:bg-trueGray-800 relative">
               {/* Image */}
               <img
                 src={service.imageUrl}
                 alt={service.title}
-                className="object-cover rounded-lg xl:col-span-3 h-[340px] m-0"
+                className="object-cover rounded-lg xl:col-span-3 h-[340px] w-full"
               />
+              {/* Title Overlay */}
+              <p className="absolute bottom-4 left-4 text-white text-[40px] font-bold font-Raleway">
+                {service.title}
+              </p>
             </div>
           </div>
         ))}
@@ -49,15 +52,14 @@ const Slider = () => {
           className="text-4xl text-gray-500 dark:text-white mr-2"
           onClick={goToPrevSlide}
         >
-          {/* Arrow Icon */}
           <ChevronLeftIcon className="h-10 w-10 text-gray-500" />
         </button>
         {/* Next Slide Arrow */}
         <button
           className="text-4xl text-gray-500 dark:text-white ml-2"
           onClick={goToNextSlide}
+          
         >
-          {/* Arrow Icon */}
           <ChevronRightIcon className="h-10 w-10 text-gray-500" />
         </button>
       </div>
