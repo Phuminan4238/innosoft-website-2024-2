@@ -67,7 +67,7 @@ export default function About() {
         <div className="relative h-[642px] sm:h-[400px] md:h-[500px] lg:h-[550px] xl:h-[642px] rounded-lg overflow-hidden">
           <img
             className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-            src="https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80"
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1lZXRpbmd8ZW58MHx8MHx8fDA%3D"
             alt="Image Description"
           />
         </div>
