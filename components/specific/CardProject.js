@@ -14,7 +14,7 @@ export default function CardProject({
 }) {
   return (
     <Link href={linkUrl} passHref>
-      <div className="group relative flex flex-col w-full bg-white rounded-xl overflow-hidden hover:shadow-lg transition cursor-pointer py-8">
+      <div className="group relative flex flex-col w-full bg-white rounded-xl overflow-hidden hover:shadow-lg transition cursor-pointer py-4">
         <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
           <img
             className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
@@ -33,7 +33,11 @@ export default function CardProject({
           </p>
           {showButton && ( // Conditionally render the button
             <div className="mt-5">
-              <Button>Read more</Button>
+              <button
+                className={`text-primary text-subtitle flex justify-center items-center gap-1 px-4 py-3 rounded-md bg-white border border-primary hover:underline transition `}
+              >
+                Read more
+              </button>
             </div>
           )}
         </div>

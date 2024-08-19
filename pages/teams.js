@@ -5,12 +5,16 @@ import PageTitle from "@/components/common/PageTitle"; // Page title component
 import Team from "@/components/specific/Member"; // Team component
 import Container from "../components/layout/Container"; // Container component for layout
 import Footer from "@/components/layout/Footer"; // Footer component
-import CardTitle from "@/components/common/CardTitle"; // Title component for cards
+import TeamTitle from "@/components/common/TeamTitle"; // Title component for cards
 import CardMember from "@/components/specific/CardMember"; // Member card component
 
 export default function Teams() {
-  const servicetitle = "Our Team"; // Define servicetitle
+  const servicetitle = "Our Partners"; // Define servicetitle
   const servicesubtitle =
+    "Stay in the know with insights from industry experts."; // Define servicesubtitle
+
+  const interntitle = "Intern"; // Define servicetitle
+  const internsubtitle =
     "Stay in the know with insights from industry experts."; // Define servicesubtitle
 
   return (
@@ -24,10 +28,10 @@ export default function Teams() {
       <Container>
         <Team /> {/* Render the Team component */}
         {/* Render CardTitle component for team section */}
-        <CardTitle title={servicetitle} subtitle={servicesubtitle} />
+        <TeamTitle title={servicetitle} subtitle={servicesubtitle} />
         <CardMember /> {/* Render CardMember component */}
         {/* Render another CardTitle component for team section */}
-        <CardTitle title={servicetitle} subtitle={servicesubtitle} />
+        <TeamTitle title={interntitle} subtitle={internsubtitle} />
         <CardMember /> {/* Render another CardMember component */}
       </Container>
       <Footer /> {/* Render the footer */}
