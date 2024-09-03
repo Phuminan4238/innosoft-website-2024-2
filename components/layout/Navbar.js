@@ -108,7 +108,7 @@ export default function NavBar() {
               </li>
               <li>
                 <a
-                  href="/team"
+                  href="/teams"
                   className="block py-2 px-3 md:p-0 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-primary-dark dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Team

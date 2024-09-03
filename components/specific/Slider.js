@@ -7,7 +7,6 @@ import { useSwipeable } from "react-swipeable";
 const Slider = () => {
   const [services, setServices] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,28 +31,17 @@ const Slider = () => {
     };
 
     fetchServices();
-
-    // Detect if the screen width is mobile or desktop
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Assuming mobile width is 768px or less
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const totalSlides = isMobile
-    ? services.length
-    : Math.ceil(services.length / 3);
+  const totalColumns = services.length;
 
   const goToNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalColumns);
   };
 
   const goToPrevSlide = () => {
     setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? totalSlides - 1 : prevSlide - 1
+      prevSlide === 0 ? totalColumns - 1 : prevSlide - 1
     );
   };
 
@@ -107,12 +95,10 @@ const Slider = () => {
             transform: `translateX(-${currentSlide * 100}%)`,
           }}
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div
               key={service.id}
-              className={`flex-shrink-0 w-full ${
-                isMobile ? "w-full" : "md:w-1/3 lg:w-1/3 xl:w-1/3"
-              }`}
+              className="flex-shrink-0 w-full md:w-1/3 lg:w-1/4 xl:w-1/3"
               onClick={() => handleServiceClick(service.topic)}
             >
               <div className="relative w-full h-60 md:h-72 lg:h-80 xl:h-[480px] overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
