@@ -1,85 +1,130 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "../layout/Container";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
-import services from "@/pages/api/service";
-import Link from "next/link";
-import Button from "../common/Button";
+import { useRouter } from "next/router";
+import { useSwipeable } from "react-swipeable";
 
 const Slider = () => {
+  const [services, setServices] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalColumns = 3; // Assuming 3 columns
+  const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch(
+          "http://10.35.29.183:1337/api/services?populate=uploadfiles.fileupload"
+        );
+        const data = await response.json();
+        const formattedServices = data.data.map((service) => ({
+          id: service.id,
+          topic: service.attributes.topic,
+          content_en: service.attributes.content_en,
+          imageUrl: service.attributes.uploadfiles?.data?.attributes?.url
+            ? `http://10.35.29.183:1337${service.attributes.uploadfiles.data.attributes.url}`
+            : null, // Handle cases where the image is not available
+        }));
+        setServices(formattedServices);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+
+    fetchServices();
+
+    // Detect if the screen width is mobile or desktop
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Assuming mobile width is 768px or less
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalSlides = isMobile
+    ? services.length
+    : Math.ceil(services.length / 3);
 
   const goToNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalColumns);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
   };
 
   const goToPrevSlide = () => {
-    setCurrentSlide(
-      (prevSlide) => (prevSlide - 1 + totalColumns) % totalColumns
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? totalSlides - 1 : prevSlide - 1
     );
   };
+
+  const handleServiceClick = (serviceTopic) => {
+    router.push({
+      pathname: "/service",
+      query: { scrollTo: serviceTopic },
+    });
+  };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: goToNextSlide,
+    onSwipedRight: goToPrevSlide,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   return (
     <div>
       <Container>
-        <div className="text-left mb-0 flex justify-between items-end self-stretch">
+        <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-0">
           <div>
-            <h2 className="text-h2 font-bold text-gray-800 dark:text-white">
+            <h2 className="text-2xl sm:text-h2 font-bold text-gray-800 dark:text-white">
               Our Services
             </h2>
-            <p className="mt-1 text-gray-600 dark:text-neutral-400">
+            <p className="mt-1 text-sm sm:text-base text-gray-600 dark:text-neutral-400">
               Stay in the know with insights from industry experts.
             </p>
           </div>
-          <div className="flex items-end">
-            <div className="flex justify-center pt-4">
-              {/* Previous Slide Arrow */}
-              <button
-                className="text-4xl text-gray-500 dark:text-white mr-2"
-                onClick={goToPrevSlide}
-              >
-                <ChevronLeftIcon className="h-10 w-10 text-gray-500" />
-              </button>
-              {/* Next Slide Arrow */}
-              <button
-                className="text-4xl text-gray-500 dark:text-white ml-2"
-                onClick={goToNextSlide}
-              >
-                <ChevronRightIcon className="h-10 w-10 text-gray-500" />
-              </button>
-            </div>
+
+          <div className="flex items-center mt-4 md:mt-0">
+            <button
+              className="text-3xl text-gray-500 dark:text-white mr-2"
+              onClick={goToPrevSlide}
+            >
+              <ChevronLeftIcon className="h-8 w-8" />
+            </button>
+            <button
+              className="text-3xl text-gray-500 dark:text-white ml-2"
+              onClick={goToNextSlide}
+            >
+              <ChevronRightIcon className="h-8 w-8" />
+            </button>
           </div>
         </div>
       </Container>
-      <div className="mt-10 relative">
+      <div className="mt-10 relative overflow-hidden" {...handlers}>
         <div
-          className="grid grid-flow-col gap-10"
+          className="flex gap-4 transition-transform duration-500 ease-out"
           style={{
-            transform: `translateX(-${currentSlide * (100 / totalColumns)}%)`,
-            transition: "transform 0.5s ease",
+            transform: `translateX(-${currentSlide * 100}%)`,
           }}
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <div
               key={service.id}
-              className="relative lg:col-span-1 xl:col-span-3 h-[480px]"
-              href="/service"
+              className={`flex-shrink-0 w-full ${
+                isMobile ? "w-full" : "md:w-1/3 lg:w-1/3 xl:w-1/3"
+              }`}
+              onClick={() => handleServiceClick(service.topic)}
             >
-              {" "}
-              <a href="/service">
-                <div className="flex flex-col justify-start w-full  border-solid border-2 p-0 rounded-lg dark:bg-trueGray-800 relative">
-                  {/* Image */}
-                  <img
-                    src={service.imageUrl}
-                    alt={service.title}
-                    className="object-cover rounded-lg xl:col-span-3 h-[480px] w-full"
-                  />
-                  {/* Title Overlay */}
-                  <p className="absolute bottom-4 left-4 text-white text-[40px] font-bold font-Raleway">
-                    {service.title}
-                  </p>
-                </div>
-              </a>
+              <div className="relative w-full h-60 md:h-72 lg:h-80 xl:h-[480px] overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                <img
+                  src={service.imageUrl}
+                  alt={service.topic}
+                  className="object-cover w-full h-full"
+                />
+                <p className="absolute bottom-4 left-4 text-white text-xl font-bold lg:text-2xl xl:text-3xl p-2 bg-gray-800 bg-opacity-50 rounded-lg">
+                  {service.topic}
+                </p>
+              </div>
             </div>
           ))}
         </div>

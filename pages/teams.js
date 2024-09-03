@@ -27,6 +27,8 @@ export default function Teams() {
       />
       <Container>
         <Team /> {/* Render the Team component */}
+
+        
         {/* Render CardTitle component for team section */}
         <TeamTitle title={servicetitle} subtitle={servicesubtitle} />
         <CardMember /> {/* Render CardMember component */}

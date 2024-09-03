@@ -1,40 +1,68 @@
-import React, { useState } from "react";
-
-// Components
-import NavBar from "../components/layout/Navbar"; // Navigation bar component
-import Container from "../components/layout/Container"; // Container component for layout
-import CardProject from "../components/specific/CardProject"; // Card component for displaying projects
-import Hero from "@/components/specific/Hero"; // Hero section component
-import CardTitle from "@/components/common/CardTitle"; // Title component for cards
-import Slider from "@/components/specific/Slider"; // Slider component for carousel
-import PageTitle from "@/components/common/PageTitle"; // Title component for pages
-import CardBlog from "@/components/specific/CardBlog"; // Card component for blogs
-import Contact from "@/components/specific/Contact"; // Contact component
-import Footer from "@/components/layout/Footer"; // Footer component
-import Client from "@/components/specific/Client"; // Client section component
+import { useState } from "react";
+import NavBar from "../components/layout/Navbar";
+import Container from "../components/layout/Container";
+import CardProject from "../components/specific/CardProject";
+import Hero from "@/components/specific/Hero";
+import CardTitle from "@/components/common/CardTitle";
+import Slider from "@/components/specific/Slider";
+import PageTitle from "@/components/common/PageTitle";
+import Footer from "@/components/layout/Footer";
+import Client from "@/components/specific/Client";
+import Contact from "@/components/specific/Contact";
 import Button from "@/components/common/Button";
+import CardBlog from "../components/specific/CardBlog";
+import Link from "next/link";
 
-// API data
-import projects from "./api/projects"; // Importing projects data from the API
-import blogs from "./api/blog"; // Importing blogs data from the API
+// Fetch data from the API
+export async function getServerSideProps() {
+  try {
+    const [projectsRes, blogsRes] = await Promise.all([
+      fetch("http://10.35.29.183:1337/api/projects?populate=uploadfiles.data"),
+      fetch(
+        "http://10.35.29.183:1337/api/blogs?populate=uploadfiles.fileupload"
+      ),
+    ]);
 
-export default function Home() {
-  // State and constants for services and projects
-  const servicetitle = "Our Services";
-  const servicesubtitle =
-    "Stay in the know with insights from industry experts.";
-  const projecttitle = "Our Projects";
-  const projectsubtitle =
-    "Stay in the know with insights from industry experts.";
-  const link = "/project"; // Ensure this is a valid string
+    const [projectsData, blogsData] = await Promise.all([
+      projectsRes.json(),
+      blogsRes.json(),
+    ]);
 
-  const maxPostsToShow = 6; // Maximum number of blog posts to show initially
-  const [blogsToShow, setBlogsToShow] = useState(maxPostsToShow); // State to track number of blogs to show
+    return {
+      props: {
+        projectsData: projectsData.data || [], // Default to empty array if data is undefined
+        blogsData: blogsData.data || [], // Default to empty array if data is undefined
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        projectsData: [], // Default to empty array on error
+        blogsData: [], // Default to empty array on error
+      },
+    };
+  }
+}
+
+export default function Home({ projectsData = [], blogsData = [] }) {
+  const [blogsToShow, setBlogsToShow] = useState(6); // State to track number of blogs to show
 
   // Function to load more blogs
   const loadMoreBlogs = () => {
-    setBlogsToShow((prev) => prev + maxPostsToShow); // Increase the count of blogs to show by the max number
+    setBlogsToShow((prev) => prev + 6); // Increase the count of blogs to show by 6
   };
+
+  // Sort projects by publishedAt date in descending order and slice to get the latest 3
+  const latestProjects = projectsData
+    .sort(
+      (a, b) =>
+        new Date(b.attributes.publishedAt) - new Date(a.attributes.publishedAt)
+    )
+    .slice(0, 3);
+
+  // Slice blogs to show based on the blogsToShow state
+  const visibleBlogs = blogsData.slice(0, blogsToShow);
 
   return (
     <div>
@@ -43,76 +71,99 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
       {/* Client Section */}
-      <div className="py-6"></div>
+      <div className="md:py-6"></div>
       <Client />
       <div className="py-6"></div>
-      {/* Services Section */}
-      <Container></Container>
       {/* Slider Section */}
-      <Slider /> {/* Assuming this is correctly integrated */}
+      <Slider />
       <div className="py-6"></div>
       {/* Projects Section */}
-      <Container>
+      <Container className="px-4 md:px-0">
         <CardTitle
-          title={projecttitle}
-          subtitle={projectsubtitle}
-          servicetitle={projecttitle}
-          link={link} // Pass the link prop here
+          title="Our Projects"
+          subtitle="Stay in the know with insights from industry experts."
+          servicetitle="Our Projects"
+          link="/project" // Ensure this is a valid string
         />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <CardProject
-              key={project.id}
-              category={project.category}
-              title={project.title}
-              description={project.description}
-              imageUrl={project.imageUrl}
-              linkUrl={`/project/${project.id}`} // Dynamically generate link URL based on project ID
-              showButton={false} // Adjust based on your project needs
-              isIndex={true} // Assuming you have an isIndex prop
-            />
-          ))}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+          {latestProjects.length > 0 ? (
+            latestProjects.map((project) => {
+              // Safeguard for undefined attributes
+              const attributes = project?.attributes || {};
+              const uploadfiles = attributes.uploadfiles?.data || [];
+              const imageUrl =
+                uploadfiles.length > 0 && uploadfiles[0]?.attributes?.url
+                  ? `http://10.35.29.183:1337${uploadfiles[0].attributes.url}` // Correctly formatted URL
+                  : "/default-image.jpg"; // Fallback image if no URL is found
+
+              return (
+                <CardProject
+                  key={project.id}
+                  category={project.attributes.category}
+                  tag={project.attributes.tag}
+                  title={project.attributes.name}
+                  description={project.attributes.description}
+                  imageUrl={`http://10.35.29.183:1337${project.attributes.uploadfiles.data.attributes.url}`}
+                  linkUrl={`/project/${project.id}`} // Dynamically generate link URL based on project ID
+                  showButton={true}
+                  isIndex={false}
+                />
+              );
+            })
+          ) : (
+            <p>No projects available.</p>
+          )}
         </div>
       </Container>
+
       {/* Blogs Section */}
-      <Container>
+      <Container className="px-4 md:px-0">
         <PageTitle
           pageTitle="Discover our blogs"
           includePrimaryBackground={false}
           pageSubtitle="A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogs.slice(0, blogsToShow).map((blog) => (
-            <CardBlog
-              key={blog.id}
-              category={blog.category}
-              title={blog.title}
-              description={blog.description}
-              imageUrl={blog.imageUrl}
-              // linkUrl={`/blog/${blog.id}`} // Dynamically generate link URL based on blog ID
-              linkUrl={`https://medium.com`} // Replace
-              showButton={true} // Show the button on all cards
-              isIndex={true} // Assuming you have an isIndex prop
-            />
-          ))}
+          {visibleBlogs.length > 0 ? (
+            visibleBlogs.map((blog) => {
+              const attributes = blog.attributes || {};
+              const imageUrl = attributes.uploadfiles?.fileupload?.data?.[0]
+                ?.attributes?.url
+                ? `http://10.35.29.183:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
+                : "/default-image.jpg"; // Fallback image if no URL is found
+
+              return (
+                <CardBlog
+                  key={blog.id}
+                  category={attributes.Category || "Uncategorized"}
+                  title={attributes.name || "Untitled Blog Post"}
+                  description={
+                    attributes.description || "No description available."
+                  }
+                  imageUrl={imageUrl}
+                  linkUrl={attributes.url || "#"}
+                />
+              );
+            })
+          ) : (
+            <p>No blogs available.</p>
+          )}
         </div>
         <div className="flex justify-center mt-8">
-          <a href="/blog">
-            <button
-              onClick={loadMoreBlogs}
-              className="text-white text-subtitle flex justify-center items-center gap-1 px-3 py-2 rounded-md border bg-primary border-primary hover:underline transition"
-            >
+          <Link href="/blog" passHref>
+            <button className="text-white text-xs sm:text-sm md:text-subtitle flex justify-center items-center gap-1 px-3 py-2 rounded-md border bg-primary border-primary hover:underline transition">
               Explore More
             </button>
-          </a>
+          </Link>
         </div>
       </Container>
+
       {/* Contact Section */}
-      <Container className="py-10">
+      <Container className="py-10 px-4 md:px-0">
         <Contact
           title="Just Connect With Us!"
-          subtitle={projectsubtitle}
-        ></Contact>
+          subtitle="Stay in the know with insights from industry experts."
+        />
       </Container>
       {/* Footer Section */}
       <Footer />

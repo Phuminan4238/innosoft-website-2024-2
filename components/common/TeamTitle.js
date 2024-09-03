@@ -9,10 +9,10 @@ const TeamTitle = ({ title, subtitle, servicetitle }) => {
   return (
     <div className="text-left mb-0 flex justify-between items-end self-stretch">
       <div>
-        <h className="text-h2 font-bold text-gray-800 dark:text-white">
+        <p className="text-2xl sm:text-h2 font-bold text-gray-800 dark:text-white">
           {title}
-        </h>
-        <p className="mt-1 text-gray-600 dark:text-neutral-400">{subtitle}</p>
+        </p>
+        <p className="text-sm sm:text-lg mt-1 text-gray-600 dark:text-neutral-400">{subtitle}</p>
       </div>
       <div className="flex items-end">
         {/* <Button>{` ${servicetitle}`}</Button> */}

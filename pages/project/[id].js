@@ -1,45 +1,67 @@
-// pages/project/[id].js
 import { useRouter } from "next/router";
 import NavBar from "../../components/layout/Navbar";
 import PageTitle from "@/components/common/PageTitle";
-import projects from "../api/projects"; // Import your projects array
 import Container from "@/components/layout/Container";
 
-export default function ProjectDetail() {
-  const router = useRouter();
-  const { id } = router.query;
+// Fetch project details on the server side
+export async function getServerSideProps(context) {
+  const { id } = context.params;
 
-  // Find the project by its ID
-  const project = projects.find((project) => project.id === Number(id));
+  try {
+    const res = await fetch(
+      `http://10.35.29.183:1337/api/projects/${id}?populate=uploadfiles.data`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch project");
+    }
+    const data = await res.json();
+    const project = data.data;
+
+    // Ensure the project data is in the expected format
+    if (!project) {
+      return {
+        notFound: true, // Show 404 page if project is not found
+      };
+    }
+
+    return {
+      props: {
+        project,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching project:", error);
+    return {
+      notFound: true, // Show 404 page if there is an error
+    };
+  }
+}
+
+export default function ProjectDetail({ project }) {
+  const router = useRouter();
 
   if (!project) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>; // Show loading state if project is not yet loaded
   }
 
   return (
     <div>
       <NavBar />
       <PageTitle
-        pageTitle={`${project.title} (${project.id})`}
+        pageTitle={`${project.attributes.name} (${project.id})`}
         includePrimaryBackground={false}
-        pageSubtitle={`${project.category} - ${project.description}`}
+        pageSubtitle={`${project.attributes.category} - ${project.attributes.description}`}
       />
       <Container>
         <img
-          src={project.imageUrl}
-          // alt={service.title}
+          src={`http://10.35.29.183:1337${project.attributes.uploadfiles.data.attributes.url}`}
+          alt={project.attributes.name}
           className="w-full h-[560px] mt-4 rounded-lg object-contain"
         />
       </Container>
       <Container className="pt-10">
-        <p>{project.content}</p>
+        <p>{project.attributes.content || "No content available"}</p>
       </Container>
-      {/* <div className="p-4 sm:p-6 lg:px-0 lg:py-4">
-        <h2 className="text-h2 font-bold">{project.title}</h2>
-        <p className="text-body">{project.category}</p>
-        <p className="text-body">{project.description}</p>
-        <p className="text-body">Project ID: {project.id}</p>
-      </div> */}
       <Container className="pb-20"></Container>
     </div>
   );

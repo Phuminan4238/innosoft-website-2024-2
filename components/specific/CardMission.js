@@ -32,8 +32,10 @@ export default function CardMission({
             </svg>
           </div>
           <div className="py-2">
-            <h3 className="text-body text-regular">{title}</h3>
-            <p className="py-2 text-caption font-regular text-subtitle">
+            <h3 className="text-body text-regular text-sm sm:text-sm md:text-base lg:text-xl">
+              {title}
+            </h3>
+            <p className="py-2 text-caption font-regular text-xs sm:text-sm md:text-base lg:text-md">
               {description}
             </p>
           </div>

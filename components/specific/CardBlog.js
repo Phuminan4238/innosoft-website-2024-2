@@ -1,35 +1,32 @@
-// components/CardBlog.js
 import React from "react";
 import ButtonArrow from "./ButtonArrow";
-import Link from "next/link";
 
 export default function CardBlog({
   category = "Uncategorized",
   title = "Untitled Blog Post",
   description = "No description available.",
-  imageUrl = "/default-image.jpg", // Provide a default image URL
-  linkUrl = "#", // Provide a default link URL
+  imageUrl = "/default-image.jpg",
+  linkUrl = "#",
   isIndex = true,
-  showButton = true, // Default to true, will show the button unless explicitly set to false
+  showButton = true,
 }) {
   return (
     <a href={linkUrl} target="_blank" rel="noopener noreferrer">
       <div className="group relative flex flex-col w-full bg-white rounded-xl overflow-hidden hover:shadow-lg transition cursor-pointer">
         <div className={isIndex ? "p-4" : "lg:px-0 lg:py-4"}>
-          <button className="text-primary text-caption flex justify-center items-center gap-1 p-2 py-1 rounded-md border border-primary hover:underline transition">
-            Latest
-          </button>
-          {/* <p className="text-footnote font-bold text-primary-light uppercase">
+          <button className="text-primary text-xs sm:text-sm md:text-base flex justify-center items-center gap-1 p-2 py-1 rounded-md border border-primary hover:underline transition">
             {category}
-          </p> */}
+          </button>
           <div className="py-2">
-            <h3 className="text-body text-regular">{title}</h3>
-            <p className="py-2 text-caption font-regular text-subtitle">
+            <h3 className="text-sm sm:text-base md:text-lg font-semibold">
+              {title}
+            </h3>
+            <p className="py-2 text-xs sm:text-sm md:text-base text-gray-600 dark:text-neutral-400">
               {description}
             </p>
           </div>
           {showButton && (
-            <div className="">
+            <div className="mt-2">
               <ButtonArrow>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,10 +1,10 @@
-// components/CardProject.js
 import React from "react";
 import Button from "../common/Button";
 import Link from "next/link";
 
 export default function CardProject({
   category,
+  tag,
   title,
   description,
   imageUrl,
@@ -24,17 +24,19 @@ export default function CardProject({
         </div>
 
         <div className={isIndex ? "p-4" : "lg:px-0 lg:py-4"}>
-          <p className="text-footnote font-bold text-primary-light uppercase">
-            {category}
+          <p className="mt-3 text-xs sm:text-sm md:text-footnote font-bold text-primary-light uppercase">
+            {tag}
           </p>
-          <h3 className="text-body font-bold text-primary-title">{title}</h3>
-          <p className="mt-3 text-caption font-regular text-primary-title">
+          <h3 className="mt-3 text-lg sm:text-xl md:text-2xl font-bold text-primary-title">
+            {title}
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base mt-3 text-caption font-regular text-primary-title">
             {description}
           </p>
           {showButton && ( // Conditionally render the button
             <div className="mt-5">
               <button
-                className={`text-primary text-subtitle flex justify-center items-center gap-1 px-4 py-3 rounded-md bg-white border border-primary hover:underline transition `}
+                className={`text-primary text-xs sm:text-sm md:text-subtitle flex justify-center items-center gap-1 px-4 py-3 rounded-md bg-white border border-primary hover:underline transition`}
               >
                 Read more
               </button>

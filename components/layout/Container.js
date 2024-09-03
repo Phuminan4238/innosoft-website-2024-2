@@ -1,14 +1,9 @@
-// components/Container.js
 import React from "react";
 
-const Container = (props) => {
+const Container = ({ children, className }) => {
   return (
-    <div
-      className={`container p-0 mx-auto xl:px-0 ${
-        props.className ? props.className : ""
-      }`}
-    >
-      {props.children}
+    <div className={`container mx-auto px-6 md:px-0 ${className}`}>
+      {children}
     </div>
   );
 };
