@@ -23,8 +23,14 @@ export default function Projects({ projectsData }) {
   const [selectedTab, setSelectedTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Sort projects by publishedAt date (newest first)
+  const sortedProjects = [...projectsData].sort(
+    (a, b) =>
+      new Date(b.attributes.publishedAt) - new Date(a.attributes.publishedAt)
+  );
+
   // Filter projects based on selected tab and search query
-  const filteredProjects = projectsData
+  const filteredProjects = sortedProjects
     .filter(
       (project) =>
         project.attributes.category === selectedTab || selectedTab === "All"
@@ -57,21 +63,26 @@ export default function Projects({ projectsData }) {
             </div>
             {/* Column 1: Tabs */}
             <div className="order-2 sm:order-1 flex flex-wrap justify-center sm:justify-start space-x-4 sm:space-x-8 mb-4 sm:mb-0 pt-4 md:pt-0 lg:pt-0">
-              {["All", "Data", "Design", "Development", "Training"].map(
-                (tab) => (
-                  <button
-                    key={tab}
-                    className={`px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-md font-medium rounded-md ${
-                      selectedTab === tab
-                        ? "bg-[#FEF0E7] text-[#F37220]"
-                        : "bg-white text-gray-700"
-                    }`}
-                    onClick={() => setSelectedTab(tab)}
-                  >
-                    {tab}
-                  </button>
-                )
-              )}
+              {[
+                "All",
+                "Consult",
+                "Data",
+                "Design",
+                "Development",
+                "Training",
+              ].map((tab) => (
+                <button
+                  key={tab}
+                  className={`px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-md font-medium rounded-md ${
+                    selectedTab === tab
+                      ? "bg-[#FEF0E7] text-[#F37220]"
+                      : "bg-white text-gray-700"
+                  }`}
+                  onClick={() => setSelectedTab(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -85,7 +96,11 @@ export default function Projects({ projectsData }) {
                 tag={project.attributes.tag}
                 title={project.attributes.name}
                 description={project.attributes.description}
-                imageUrl={`http://10.35.29.183:1337${project.attributes.uploadfiles.data.attributes.url}`}
+                imageUrl={
+                  project.attributes.uploadfiles?.data?.attributes?.url
+                    ? `http://10.35.29.183:1337${project.attributes.uploadfiles.data.attributes.url}`
+                    : "/public/img/default-image.jpg" // Fallback image if no image is found
+                }
                 linkUrl={`/project/${project.id}`} // Dynamically generate link URL based on project ID
                 showButton={true}
                 isIndex={false}

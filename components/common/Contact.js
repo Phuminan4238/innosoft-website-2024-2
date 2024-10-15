@@ -24,6 +24,7 @@ const ContactForm = ({ isOpen, setIsOpen }) => {
 
     // Validate that service is one of the allowed values
     const allowedServices = [
+      "Consult",
       "Data",
       "Design",
       "Development",
@@ -103,6 +104,7 @@ const ContactForm = ({ isOpen, setIsOpen }) => {
               required
             >
               <option value="">Select a service</option>
+              <option value="Data">Consult</option>
               <option value="Data">Data</option>
               <option value="Design">Design</option>
               <option value="Development">Development</option>

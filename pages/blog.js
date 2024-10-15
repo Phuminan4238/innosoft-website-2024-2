@@ -59,9 +59,9 @@ export default function Blog({ blogsData = [] }) {
           pageSubtitle="A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music."
         />
         <div className="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-8 lg:py-6 mx-auto">
-          <div className="flex flex-col sm:flex-row items-center sm:justify-between mb-6 space-y-4 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row items-center sm:justify-between mb-6">
             {/* Column 2: Search Bar */}
-            <div className="order-1 sm:order-2 flex-grow w-full sm:max-w-md">
+            <div className="order-1 sm:order-2 flex-grow max-w-full sm:max-w-md mb-4 sm:mb-0">
               <input
                 type="text"
                 placeholder="Search..."
@@ -71,13 +71,13 @@ export default function Blog({ blogsData = [] }) {
               />
             </div>
             {/* Column 1: Tabs */}
-            <div className="order-2 sm:order-1 flex flex-wrap justify-center sm:justify-start w-full sm:w-auto space-x-4 sm:space-x-8">
+            <div className="order-2 sm:order-1 flex flex-wrap justify-center sm:justify-start space-x-4 sm:space-x-8 mb-4 sm:mb-0 pt-4 md:pt-0 lg:pt-0">
               {[
                 "All",
+                "Consult",
                 "Data",
                 "Design",
                 "Development",
-                // "rCloud",
                 "Training",
               ].map((tab) => (
                 <button
@@ -103,7 +103,7 @@ export default function Blog({ blogsData = [] }) {
               const imageUrl = attributes.uploadfiles?.fileupload?.data?.[0]
                 ?.attributes?.url
                 ? `http://10.35.29.183:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
-                : "/default-image.jpg";
+                : "/public/img/default-image.jpg";
               return (
                 <CardBlog
                   key={blog.id}

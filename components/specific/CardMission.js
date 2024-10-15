@@ -7,7 +7,7 @@ export default function CardMission({
   category = "Uncategorized",
   title = "Untitled Blog Post",
   description = "No description available.",
-  imageUrl = "/default-image.jpg", // Provide a default image URL
+  imageUrl = "/public/img/default-image.jpg", // Provide a default image URL
   linkUrl = "#", // Provide a default link URL
   isIndex = true,
   showButton = true, // Default to true, will show the button unless explicitly set to false

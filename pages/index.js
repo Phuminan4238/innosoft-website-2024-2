@@ -94,7 +94,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
               const imageUrl =
                 uploadfiles.length > 0 && uploadfiles[0]?.attributes?.url
                   ? `http://10.35.29.183:1337${uploadfiles[0].attributes.url}` // Correctly formatted URL
-                  : "/default-image.jpg"; // Fallback image if no URL is found
+                  : "/public/img/default-image.jpg"; // Fallback image if no URL is found
 
               return (
                 <CardProject
@@ -130,7 +130,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
               const imageUrl = attributes.uploadfiles?.fileupload?.data?.[0]
                 ?.attributes?.url
                 ? `http://10.35.29.183:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
-                : "/default-image.jpg"; // Fallback image if no URL is found
+                : "/public/img/default-image.jpg"; // Fallback image if no URL is found
 
               return (
                 <CardBlog

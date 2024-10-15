@@ -23,11 +23,11 @@ export default function CardProject({
           />
         </div>
 
-        <div className={isIndex ? "p-4" : "lg:px-0 lg:py-4"}>
+        <div className={isIndex ? "p-4" : "lg:px-4 lg:py-4"}>
           <p className="mt-3 text-xs sm:text-sm md:text-footnote font-bold text-primary-light uppercase">
             {tag}
           </p>
-          <h3 className="mt-3 text-lg sm:text-xl md:text-2xl font-bold text-primary-title">
+          <h3 className="mt-3 text-lg sm:text-xl md:text-xl font-bold text-primary-title">
             {title}
           </h3>
           <p className="text-xs sm:text-sm md:text-base mt-3 text-caption font-regular text-primary-title">

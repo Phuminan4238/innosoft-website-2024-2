@@ -5,7 +5,7 @@ export default function CardBlog({
   category = "Uncategorized",
   title = "Untitled Blog Post",
   description = "No description available.",
-  imageUrl = "/default-image.jpg",
+  imageUrl = "/public/img/default-image.jpg",
   linkUrl = "#",
   isIndex = true,
   showButton = true,

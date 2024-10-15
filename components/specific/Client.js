@@ -29,7 +29,7 @@ const Client = () => {
         {clients.map((client) => (
           <div
             key={client.id}
-            className="pt-2 text-gray-400 dark:text-gray-400"
+            className="pt-2 text-gray-400 dark:text-gray-400 px-6"
           >
             <img
               src={`http://10.35.29.183:1337${client.attributes.uploadfiles.data.attributes.url}`}
