@@ -23,6 +23,12 @@ export default function Projects({ projectsData }) {
   const [selectedTab, setSelectedTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Extract unique categories from the projects data
+  const categoriesWithData = [
+    "All", // Always include the "All" category
+    ...new Set(projectsData.map((project) => project.attributes.category)),
+  ];
+
   // Sort projects by publishedAt date (newest first)
   const sortedProjects = [...projectsData].sort(
     (a, b) =>
@@ -33,7 +39,7 @@ export default function Projects({ projectsData }) {
   const filteredProjects = sortedProjects
     .filter(
       (project) =>
-        project.attributes.category === selectedTab || selectedTab === "All"
+        selectedTab === "All" || project.attributes.category === selectedTab
     )
     .filter((project) =>
       project.attributes.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -63,14 +69,7 @@ export default function Projects({ projectsData }) {
             </div>
             {/* Column 1: Tabs */}
             <div className="order-2 sm:order-1 flex flex-wrap justify-center sm:justify-start space-x-4 sm:space-x-8 mb-4 sm:mb-0 pt-4 md:pt-0 lg:pt-0">
-              {[
-                "All",
-                "Consult",
-                "Data",
-                "Design",
-                "Development",
-                "Training",
-              ].map((tab) => (
+              {categoriesWithData.map((tab) => (
                 <button
                   key={tab}
                   className={`px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-md font-medium rounded-md ${
@@ -94,6 +93,7 @@ export default function Projects({ projectsData }) {
                 key={project.id}
                 category={project.attributes.category}
                 tag={project.attributes.tag}
+                tag2={project.attributes.tag2}
                 title={project.attributes.name}
                 description={project.attributes.description}
                 imageUrl={

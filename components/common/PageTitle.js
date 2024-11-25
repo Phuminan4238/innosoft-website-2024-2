@@ -28,7 +28,7 @@ const PageTitle = ({ pageTitle, pageSubtitle, includePrimaryBackground }) => {
             {pageTitle}
           </h2>
           {pageSubtitle && (
-            <p className="text-sm sm:text-base md:text-lg font-regular mt-2">
+            <p className="text-sm sm:text-base md:text-lg font-regular mt-4">
               {pageSubtitle}
             </p>
           )}

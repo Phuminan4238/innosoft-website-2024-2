@@ -48,7 +48,7 @@ export default function ProjectDetail({ project }) {
     <div>
       <NavBar />
       <PageTitle
-        pageTitle={`${project.attributes.name} (${project.id})`}
+        pageTitle={`${project.attributes.name}`}
         includePrimaryBackground={false}
         pageSubtitle={`${project.attributes.category} - ${project.attributes.description}`}
       />
@@ -59,8 +59,10 @@ export default function ProjectDetail({ project }) {
           className="w-full h-[560px] mt-4 rounded-lg object-contain"
         />
       </Container>
-      <Container className="pt-10">
-        <p>{project.attributes.content || "No content available"}</p>
+      <Container className="pt-10 text-center">
+        <p className="px-6">
+          {project.attributes.content || "No content available"}
+        </p>
       </Container>
       <Container className="pb-20"></Container>
     </div>

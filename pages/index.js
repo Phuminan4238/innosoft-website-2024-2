@@ -101,6 +101,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
                   key={project.id}
                   category={project.attributes.category}
                   tag={project.attributes.tag}
+                  tag2={project.attributes.tag2}
                   title={project.attributes.name}
                   description={project.attributes.description}
                   imageUrl={`http://10.35.29.183:1337${project.attributes.uploadfiles.data.attributes.url}`}
