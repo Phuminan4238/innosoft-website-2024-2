@@ -25,7 +25,7 @@ export default function NavBar() {
     <Container>
       <nav className="relative z-10">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
+          <Link
             href="/"
             className="flex items-center space-x-2 text-lg md:text-3xl font-medium dark:text-gray-100"
           >
@@ -40,7 +40,7 @@ export default function NavBar() {
               <span className="text-gray-500">Inno</span>
               <span className="text-orange-500">soft</span>
             </span>
-          </a>
+          </Link>
           <div className="flex items-center space-x-3 md:space-x-0 rtl:space-x-reverse md:order-2">
             <button
               type="button"
@@ -83,44 +83,44 @@ export default function NavBar() {
           >
             <ul className="flex flex-col font-medium px-8 py-2 mt-4 text-primary border border-white rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 bg-slate-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a
+                <Link
                   href="/about"
                   className="block py-2 px-3 md:p-0 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-primary-dark dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/service"
                   className="block py-2 px-3 md:p-0 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-primary-dark dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/project"
                   className="block py-2 px-3 md:p-0 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-primary-dark dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Project
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/teams"
                   className="block py-2 px-3 md:p-0 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-primary-dark dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Team
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/blog"
                   className="block py-2 px-3 md:p-0 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-primary-dark dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
