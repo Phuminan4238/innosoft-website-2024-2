@@ -50,7 +50,7 @@ const ContactForm = ({ isOpen, setIsOpen }) => {
     console.log("Submitting Form Data:", submissionData);
 
     try {
-      const response = await fetch("http://10.35.29.183:1337/api/contacts", {
+      const response = await fetch("http://202.44.12.87:1337/api/contacts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

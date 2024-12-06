@@ -8,14 +8,14 @@ const Team = () => {
     const fetchTeamMembers = async () => {
       try {
         const response = await axios.get(
-          "http://10.35.29.183:1337/api/teams?populate=uploadfiles"
+          "http://202.44.12.87:1337/api/teams?populate=uploadfiles"
         );
         const data = response.data.data.map((item) => ({
           id: item.id,
           name: `${item.attributes.name_en} ${item.attributes.surname_en}`,
           title: item.attributes.position,
           tag: item.attributes.tag,
-          imageUrl: `http://10.35.29.183:1337${item.attributes.uploadfiles.data.attributes.url}`,
+          imageUrl: `http://202.44.12.87:1337${item.attributes.uploadfiles.data.attributes.url}`,
         }));
         setTeamMembers(data);
       } catch (error) {

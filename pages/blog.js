@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 export async function getServerSideProps() {
   try {
     const res = await fetch(
-      "http://10.35.29.183:1337/api/blogs?populate=uploadfiles.fileupload"
+      "http://202.44.12.87:1337/api/blogs?populate=uploadfiles.fileupload"
     );
     const data = await res.json();
 
@@ -39,11 +39,19 @@ export default function Blog({ blogsData = [] }) {
   const [selectedTab, setSelectedTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Extract unique categories from blogsData and include "All"
+  const categoriesWithData = [
+    "All",
+    ...new Set(
+      blogsData.map((blog) => blog.attributes.Category || "Uncategorized")
+    ),
+  ];
+
   // Filter blogs based on selected tab and search query
   const filteredBlogs = blogsData
     .filter(
       (blog) =>
-        blog.attributes.Category === selectedTab || selectedTab === "All"
+        selectedTab === "All" || blog.attributes.Category === selectedTab
     )
     .filter((blog) =>
       blog.attributes.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -72,14 +80,7 @@ export default function Blog({ blogsData = [] }) {
             </div>
             {/* Column 1: Tabs */}
             <div className="order-2 sm:order-1 flex flex-wrap justify-center sm:justify-start space-x-4 sm:space-x-8 mb-4 sm:mb-0 pt-4 md:pt-0 lg:pt-0">
-              {[
-                "All",
-                "Consult",
-                "Data",
-                "Design",
-                "Development",
-                "Training",
-              ].map((tab) => (
+              {categoriesWithData.map((tab) => (
                 <button
                   key={tab}
                   className={`flex-1 sm:flex-none px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-md font-medium rounded-md ${
@@ -102,7 +103,7 @@ export default function Blog({ blogsData = [] }) {
               const attributes = blog.attributes || {};
               const imageUrl = attributes.uploadfiles?.fileupload?.data?.[0]
                 ?.attributes?.url
-                ? `http://10.35.29.183:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
+                ? `http://202.44.12.87:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
                 : "/public/img/default-image.jpg";
               return (
                 <CardBlog

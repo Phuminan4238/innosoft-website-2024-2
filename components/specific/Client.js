@@ -8,7 +8,7 @@ const Client = () => {
     const fetchClients = async () => {
       try {
         const response = await fetch(
-          "http://10.35.29.183:1337/api/clients?populate=uploadfiles"
+          "http://202.44.12.87:1337/api/clients?populate=uploadfiles"
         );
         const data = await response.json();
         setClients(data.data);
@@ -32,7 +32,7 @@ const Client = () => {
             className="pt-2 text-gray-400 dark:text-gray-400 px-6"
           >
             <img
-              src={`http://10.35.29.183:1337${client.attributes.uploadfiles.data.attributes.url}`}
+              src={`http://202.44.12.87:1337${client.attributes.uploadfiles.data.attributes.url}`}
               alt={client.attributes.name_en}
               width={client.attributes.uploadfiles.data.attributes.width}
               height={client.attributes.uploadfiles.data.attributes.height}

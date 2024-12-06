@@ -9,7 +9,7 @@ export async function getServerSideProps(context) {
 
   try {
     const res = await fetch(
-      `http://10.35.29.183:1337/api/projects/${id}?populate=uploadfiles.data`
+      `http://202.44.12.87:1337/api/projects/${id}?populate=uploadfiles.data`
     );
     if (!res.ok) {
       throw new Error("Failed to fetch project");
@@ -54,7 +54,7 @@ export default function ProjectDetail({ project }) {
       />
       <Container>
         <img
-          src={`http://10.35.29.183:1337${project.attributes.uploadfiles.data.attributes.url}`}
+          src={`http://202.44.12.87:1337${project.attributes.uploadfiles.data.attributes.url}`}
           alt={project.attributes.name}
           className="w-full h-[560px] mt-4 rounded-lg object-contain"
         />
