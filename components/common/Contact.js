@@ -104,11 +104,9 @@ const ContactForm = ({ isOpen, setIsOpen }) => {
               required
             >
               <option value="">Select a service</option>
-              <option value="Data">Consult</option>
-              <option value="Data">Data</option>
+              <option value="rCloud">rCloud</option>
               <option value="Design">Design</option>
               <option value="Development">Development</option>
-              <option value="rCloud">rCloud</option>
               <option value="Training">Training</option>
               {/* Add more options as needed */}
             </select>
