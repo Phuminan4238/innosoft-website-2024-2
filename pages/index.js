@@ -163,7 +163,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
       <Container className="py-10 px-4 md:px-0">
         <Contact
           title="Just Connect With Us!"
-          subtitle="Stay in the know with insights from industry experts."
+          subtitle="Stay in the know with insights from industry experts"
         />
       </Container>
       {/* Footer Section */}
