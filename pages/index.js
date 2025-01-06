@@ -93,7 +93,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
               const uploadfiles = attributes.uploadfiles?.data || [];
               const imageUrl =
                 uploadfiles.length > 0 && uploadfiles[0]?.attributes?.url
-                  ? `http://202.44.12.87:1337${uploadfiles[0].attributes.url}` // Correctly formatted URL
+                  ? `https://202.44.12.87:1337${uploadfiles[0].attributes.url}` // Correctly formatted URL
                   : "/public/img/default-image.jpg"; // Fallback image if no URL is found
 
               return (
