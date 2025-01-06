@@ -29,7 +29,7 @@ const ServicePage = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          "https://202.44.12.87:1337/api/services?populate=uploadfiles.fileupload"
+          "http://202.44.12.87:1337/api/services?populate=uploadfiles.fileupload"
         );
         const data = await response.json();
         const formattedServices = data.data.map((service) => ({
@@ -38,7 +38,7 @@ const ServicePage = () => {
           category: service.attributes.category,
           content_en: service.attributes.content_en,
           imageUrl: service.attributes.uploadfiles?.data?.attributes?.url
-            ? `https://202.44.12.87:1337${service.attributes.uploadfiles.data.attributes.url}`
+            ? `http://202.44.12.87:1337${service.attributes.uploadfiles.data.attributes.url}`
             : null, // Handle cases where the image is not available
         }));
         setServices(formattedServices);

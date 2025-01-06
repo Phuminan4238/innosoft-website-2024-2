@@ -8,7 +8,7 @@ const CardMember = ({ category }) => {
     const fetchTeamMembers = async () => {
       try {
         const response = await axios.get(
-          `https://202.44.12.87:1337/api/teams?populate=uploadfiles`
+          `http://202.44.12.87:1337/api/teams?populate=uploadfiles`
         );
         const data = response.data.data
           .filter((item) => item.attributes.category === category) // Filter by category
@@ -18,7 +18,7 @@ const CardMember = ({ category }) => {
             title: item.attributes.position,
             tag: item.attributes.tag,
             order: item.attributes.order, // Include the order field
-            imageUrl: `https://202.44.12.87:1337${item.attributes.uploadfiles.data.attributes.url}`,
+            imageUrl: `http://202.44.12.87:1337${item.attributes.uploadfiles.data.attributes.url}`,
           }))
           .sort((a, b) => a.order - b.order); // Sort by the order field (ascending)
 

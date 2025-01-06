@@ -17,9 +17,9 @@ import Link from "next/link";
 export async function getServerSideProps() {
   try {
     const [projectsRes, blogsRes] = await Promise.all([
-      fetch("https://202.44.12.87:1337/api/projects?populate=uploadfiles.data"),
+      fetch("http://202.44.12.87:1337/api/projects?populate=uploadfiles.data"),
       fetch(
-        "https://202.44.12.87:1337/api/blogs?populate=uploadfiles.fileupload"
+        "http://202.44.12.87:1337/api/blogs?populate=uploadfiles.fileupload"
       ),
     ]);
 
@@ -93,7 +93,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
               const uploadfiles = attributes.uploadfiles?.data || [];
               const imageUrl =
                 uploadfiles.length > 0 && uploadfiles[0]?.attributes?.url
-                  ? `https://202.44.12.87:1337${uploadfiles[0].attributes.url}` // Correctly formatted URL
+                  ? `http://202.44.12.87:1337${uploadfiles[0].attributes.url}` // Correctly formatted URL
                   : "/public/img/default-image.jpg"; // Fallback image if no URL is found
 
               return (
@@ -104,7 +104,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
                   tag2={project.attributes.tag2}
                   title={project.attributes.name}
                   description={project.attributes.description}
-                  imageUrl={`https://202.44.12.87:1337${project.attributes.uploadfiles.data.attributes.url}`}
+                  imageUrl={`http://202.44.12.87:1337${project.attributes.uploadfiles.data.attributes.url}`}
                   linkUrl={`/project/${project.id}`} // Dynamically generate link URL based on project ID
                   showButton={true}
                   isIndex={false}
@@ -130,7 +130,7 @@ export default function Home({ projectsData = [], blogsData = [] }) {
               const attributes = blog.attributes || {};
               const imageUrl = attributes.uploadfiles?.fileupload?.data?.[0]
                 ?.attributes?.url
-                ? `https://202.44.12.87:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
+                ? `http://202.44.12.87:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
                 : "/public/img/default-image.jpg"; // Fallback image if no URL is found
 
               return (
