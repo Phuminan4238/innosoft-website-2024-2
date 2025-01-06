@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 // Fetch projects data from the API
 export async function getServerSideProps() {
   const res = await fetch(
-    "http://202.44.12.87:1337/api/projects?populate=uploadfiles.data"
+    "https://202.44.12.87:1337/api/projects?populate=uploadfiles.data"
   );
   const data = await res.json();
 
@@ -98,7 +98,7 @@ export default function Projects({ projectsData }) {
                 description={project.attributes.description}
                 imageUrl={
                   project.attributes.uploadfiles?.data?.attributes?.url
-                    ? `http://202.44.12.87:1337${project.attributes.uploadfiles.data.attributes.url}`
+                    ? `https://202.44.12.87:1337${project.attributes.uploadfiles.data.attributes.url}`
                     : "/public/img/default-image.jpg" // Fallback image if no image is found
                 }
                 linkUrl={`/project/${project.id}`} // Dynamically generate link URL based on project ID

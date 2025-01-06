@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 export async function getServerSideProps() {
   try {
     const res = await fetch(
-      "http://202.44.12.87:1337/api/blogs?populate=uploadfiles.fileupload"
+      "https://202.44.12.87:1337/api/blogs?populate=uploadfiles.fileupload"
     );
     const data = await res.json();
 
@@ -103,7 +103,7 @@ export default function Blog({ blogsData = [] }) {
               const attributes = blog.attributes || {};
               const imageUrl = attributes.uploadfiles?.fileupload?.data?.[0]
                 ?.attributes?.url
-                ? `http://202.44.12.87:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
+                ? `https://202.44.12.87:1337${attributes.uploadfiles.fileupload.data[0].attributes.url}`
                 : "/public/img/default-image.jpg";
               return (
                 <CardBlog
