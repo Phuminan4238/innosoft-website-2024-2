@@ -23,7 +23,7 @@ export default function About() {
     const fetchAboutData = async () => {
       try {
         const response = await fetch(
-          "http://202.44.12.87:1337/api/abouts?populate=uploadfiles.fileupload&populate=mission.uploadfiles"
+          "https://innosoft.kmutt.ac.th/api/abouts?populate=uploadfiles.fileupload&populate=mission.uploadfiles"
         );
         const result = await response.json();
         setAboutData(result.data); // Store the data in state
@@ -60,7 +60,7 @@ export default function About() {
                   <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] xl:h-[550px] rounded-lg">
                     <img
                       className="size-full absolute top-0 start-0 object-cover rounded-lg"
-                      src={`http://202.44.12.87:1337${item.attributes.uploadfiles?.data[0]?.attributes?.url}`}
+                      src={`https://innosoft.kmutt.ac.th${item.attributes.uploadfiles?.data[0]?.attributes?.url}`}
                       alt={
                         item.attributes.uploadfiles?.data[0]?.attributes
                           ?.name || "Image Description"
@@ -137,7 +137,7 @@ export default function About() {
                     description={
                       mission.paragraph || item.attributes.content_en
                     } // Use the mission paragraph or fallback to general content
-                    // imageUrl={`http://202.44.12.87:1337${mission.uploadfiles?.data[0]?.attributes?.url}`} // Uncomment and use if an image URL is needed
+                    // imageUrl={`https://innosoft.kmutt.ac.th${mission.uploadfiles?.data[0]?.attributes?.url}`} // Uncomment and use if an image URL is needed
                     // linkUrl={`/mission/${item.id}`}
                     showButton={false} // Adjust based on your project needs
                     isIndex={true} // Assuming you have an isIndex prop
@@ -156,7 +156,7 @@ export default function About() {
               <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] xl:h-[550px] rounded-lg overflow-hidden">
                 <img
                   className="size-full absolute top-0 start-0 object-cover rounded-lg"
-                  src={`http://202.44.12.87:1337${item.attributes.uploadfiles?.data[0]?.attributes?.url}`}
+                  src={`https://innosoft.kmutt.ac.th${item.attributes.uploadfiles?.data[0]?.attributes?.url}`}
                   alt={
                     item.attributes.uploadfiles?.data[0]?.attributes?.name ||
                     "Image Description"

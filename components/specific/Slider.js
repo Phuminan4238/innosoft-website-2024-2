@@ -13,7 +13,7 @@ const Slider = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          "http://202.44.12.87:1337/api/services?populate=uploadfiles.fileupload"
+          "https://innosoft.kmutt.ac.th/api/services?populate=uploadfiles.fileupload"
         );
         const data = await response.json();
         const formattedServices = data.data.map((service) => ({
@@ -21,7 +21,7 @@ const Slider = () => {
           topic: service.attributes.topic,
           content_en: service.attributes.content_en,
           imageUrl: service.attributes.uploadfiles?.data?.attributes?.url
-            ? `http://202.44.12.87:1337${service.attributes.uploadfiles.data.attributes.url}`
+            ? `https://innosoft.kmutt.ac.th${service.attributes.uploadfiles.data.attributes.url}`
             : null, // Handle cases where the image is not available
         }));
         setServices(formattedServices);
