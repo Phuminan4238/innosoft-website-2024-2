@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
-import "tailwindcss/tailwind.css"; // Adjust path based on your setup
+import "tailwindcss/tailwind.css"; 
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Modal from "../common/Modal"; // Make sure to adjust the path according to your file structure
 import ContactForm from "../common/Contact";
 
 export default function NavBar() {

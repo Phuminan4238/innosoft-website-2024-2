@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-// components
 import NavBar from "../components/layout/Navbar"; // Navigation bar component
 import Container from "../components/layout/Container"; // Container component for layout
-// components/common
 import PageTitle from "@/components/common/PageTitle"; // Page title component
-// components/specific
-import BlogCard from "@/components/specific/Blog"; // Blog card component
 import CardMission from "@/components/specific/CardMission"; // Mission card component
-// components/layout
 import Footer from "@/components/layout/Footer"; // Footer component
-// components/specific
 import CardMember from "@/components/specific/CardMember"; // Member card component
-// components/common
 import CardTitle from "@/components/common/CardTitle"; // Title component for cards
 
 export default function About() {
@@ -132,15 +125,13 @@ export default function About() {
               ? item.attributes.mission.map((mission) => (
                   <CardMission
                     key={mission.id}
-                    category={item.attributes.topic} // Or mission-specific category if available
-                    title={mission.header} // Use the mission component's header
+                    category={item.attributes.topic} 
+                    title={mission.header} 
                     description={
                       mission.paragraph || item.attributes.content_en
-                    } // Use the mission paragraph or fallback to general content
-                    // imageUrl={`https://innosoft.kmutt.ac.th${mission.uploadfiles?.data[0]?.attributes?.url}`} // Uncomment and use if an image URL is needed
-                    // linkUrl={`/mission/${item.id}`}
-                    showButton={false} // Adjust based on your project needs
-                    isIndex={true} // Assuming you have an isIndex prop
+                    } 
+                    showButton={false} 
+                    isIndex={true} 
                   />
                 ))
               : null

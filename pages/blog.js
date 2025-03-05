@@ -15,14 +15,14 @@ export async function getServerSideProps() {
 
     return {
       props: {
-        blogsData: data.data || [], // Default to empty array if data is undefined
+        blogsData: data.data || [], 
       },
     };
   } catch (error) {
     console.error("Error fetching data:", error);
     return {
       props: {
-        blogsData: [], // Default to empty array on error
+        blogsData: [], 
       },
     };
   }
@@ -39,7 +39,6 @@ export default function Blog({ blogsData = [] }) {
   const [selectedTab, setSelectedTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Extract unique categories from blogsData and include "All"
   const categoriesWithData = [
     "All",
     ...new Set(
@@ -47,7 +46,7 @@ export default function Blog({ blogsData = [] }) {
     ),
   ];
 
-  // Filter blogs based on selected tab and search query
+ 
   const filteredBlogs = blogsData
     .filter(
       (blog) =>
