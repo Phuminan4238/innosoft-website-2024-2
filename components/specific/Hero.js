@@ -1,98 +1,70 @@
+// components/specific/Hero.jsx
 import React from "react";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div
-      className="py-20 relative overflow-hidden"
-      style={{
-        borderRadius: "0px 0rem 20rem 20rem",
-        marginTop: "-80px", // Adjusted margin-top instead of top positioning
-      }}
-    >
+    <div className="relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20 bg-white">
+      {/* background blobs */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-400 rounded-lg blur hidden lg:block"
-        style={{
-          borderRadius: "441px",
-          background: "", // Updated background color
-          filter: "blur(260px)",
-          zIndex: "-2", // Ensure background is behind content
-          right: "-100px", // Adjusted right offset
-          left: "580px",
-          top: "200px",
-          width: "620px",
-          height: "420px",
-        }}
-      ></div>
+        className="pointer-events-none absolute -top-32 -left-10 w-[480px] h-[480px] rounded-full bg-[#FCDCC7] blur-3xl opacity-70"
+        aria-hidden="true"
+      />
       <div
-        className="absolute inset-0 bg-gradient-to-br from-orange-500 to-purple-500 rounded-lg blur"
-        style={{
-          borderRadius: "441px",
-          background: "#FCDCC7", // Updated background color
-          filter: "blur(140px)",
-          zIndex: "-1", // Ensure background is behind content
-          right: "-100px", // Adjusted right offset
-          left: "30px",
-          top: "170px",
-          width: "640px",
-          height: "500px",
-        }}
-      ></div>
-      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-36 pb-4">
-        {/* Announcement Banner */}
+        className="pointer-events-none absolute -top-10 right-0 w-[520px] h-[520px] rounded-full bg-[#E5EEFF] blur-3xl opacity-60"
+        aria-hidden="true"
+      />
+
+      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* banner */}
         <div className="flex justify-center">
-          <a
-            className="inline-flex items-center gap-x-2 border-primary border text-xs text-gray-600 p-1 px-3 rounded-full transition hover:border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-600 dark:text-neutral-400"
-            href="#"
-          >
-            {/* Explore the Capital Product */}
-            <span className="flex items-center gap-x-1 py-0">
-              <span className="text-primary">o</span>
-              <span className=" border-primary text-primary font-semibold ps-2 dark:text-blue-500 dark:border-neutral-700">
-                Label
-              </span>
-            </span>
-          </a>
+          <div className="inline-flex items-center gap-x-2 border border-primary/40 bg-white/80 backdrop-blur px-4 py-1 rounded-full text-xs text-primary">
+            Innosoft KMUTT • Digital & Software Services
+          </div>
         </div>
-        {/* End Announcement Banner */}
 
-        {/* Title */}
-        <div className="mt-6 max-w-2xl text-center mx-auto">
-          <h1 className="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-7xl dark:text-neutral-200">
-            We Create <br></br>Incredible Projects
+        {/* title */}
+        <div className="mt-6 text-center max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            We build software and
+            <br className="hidden md:block" />
+            high-performance services
           </h1>
-        </div>
-        {/* End Title */}
-
-        <div className="mt-8 max-w-3xl text-center mx-auto">
-          <p className="font-headline font-bold text-primary dark:text-neutral-400">
-            SOFTWARE DEVELOPING AND <br></br>HIGH PERFORMANCE SERVICE
+          <p className="mt-5 text-gray-600 md:text-lg">
+        ศูนย์นวัตกรรมซอฟต์แวร์และการประมวลผล
+            สังกัดภาควิชาวิศวกรรมคอมพิวเตอร์
+            <br></br>
+            มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
+            <br></br><br></br>
+            ให้บริการพัฒนาระบบสารสนเทศทั้งโครงการภายในและโครงการภายนอก
+            <br></br>
+            ครอบคลุมงานมหาวิทยาลัย ภาครัฐ และอุตสาหกรรม.
           </p>
         </div>
 
-        {/* Buttons */}
-        <div className="mt-16 gap-3 flex justify-center">
-          <a
-            className="inline-flex justify-center items-center gap-x-3 px-6  text-center bg-primary border border-transparent text-white text-sm font-medium rounded-full py-3 px-4 dark:focus:ring-offset-gray-800"
-            href="#"
+        {/* buttons */}
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <Link
+            href="/service"
+            className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-7 py-3 text-sm font-medium"
           >
-            Explore
+            ดูบริการ
             <svg
-              className="flex-shrink-0 size-4 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              className="w-4 h-4"
               viewBox="0 0 24 24"
-              fill="none"
               stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              fill="none"
             >
-              <path d="m9 18 6-6-6-6" />
+              <path d="m9 18 6-6-6-6" strokeWidth="2" />
             </svg>
-          </a>
+          </Link>
+          <Link
+            href="#contact"
+            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-gray-200 rounded-full px-7 py-3 text-sm text-gray-700 hover:bg-white"
+          >
+            ติดต่อโครงการ
+          </Link>
         </div>
-        {/* End Buttons */}
       </div>
     </div>
   );
