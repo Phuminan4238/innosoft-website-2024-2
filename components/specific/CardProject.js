@@ -25,24 +25,22 @@ export default function CardProject({
         </div>
 
         <div className={isIndex ? "p-4" : "lg:px-4 lg:py-4"}>
-         
-
-          <h4 className="mt-3 sm:text-md md:text-md font-bold text-primary-title">
-            {title}
-          </h4>
-          {/* <p className="text-xs sm:text-sm md:text-base mt-3 text-caption font-regular text-primary-title">
-            {description}
-          </p> */}
-
-           <p className="mt-3 text-xs sm:text-sm md:text-footnote font-bold uppercase">
+          <p className="mt-3 text-xs sm:text-sm md:text-footnote font-bold uppercase">
             <span className="text-orange-500">{tag}</span>
             <br />
             <span className="text-blue-500">{tag2}</span>
           </p>
+
+          <h3 className="mt-3 text-lg sm:text-xl md:text-xl font-bold text-primary-title">
+            {title}
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base mt-3 text-caption font-regular text-primary-title">
+            {description}
+          </p>
           {showButton && ( // Conditionally render the button
             <div className="mt-5">
               <button
-                className={`text-primary text-xs sm:text-sm flex justify-center items-center gap-1 p-2 rounded-md bg-white border border-primary hover:underline transition`}
+                className={`text-primary text-xs sm:text-sm md:text-subtitle flex justify-center items-center gap-1 px-4 py-3 rounded-md bg-white border border-primary hover:underline transition`}
               >
                 Read more
               </button>
