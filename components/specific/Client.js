@@ -1,34 +1,32 @@
 import { useEffect, useState } from "react";
 import Container from "../layout/Container";
 
-const DEFAULT_CLIENT_LOGO = "/img/innosoft-logo.png";
-
 // ถ้าดึงจากของจริงไม่ได้ (ติด CORS / ไม่มี data) จะใช้ชุดนี้แทน
 const FALLBACK_CLIENTS = [
   {
     id: "fb-1",
     name: "KMUTT",
-    logo: DEFAULT_CLIENT_LOGO,
+    logo: "/img/clients/kmutt.png",
   },
   {
     id: "fb-2",
     name: "CPE",
-    logo: DEFAULT_CLIENT_LOGO,
+    logo: "/img/clients/cpe.png",
   },
   {
     id: "fb-3",
     name: "RIPO",
-    logo: DEFAULT_CLIENT_LOGO,
+    logo: "/img/clients/ripo.png",
   },
   {
     id: "fb-4",
     name: "Informatics",
-    logo: DEFAULT_CLIENT_LOGO,
+    logo: "/img/clients/informatics.png",
   },
   {
     id: "fb-5",
     name: "KMUTT Partner",
-    logo: DEFAULT_CLIENT_LOGO,
+    logo: "/img/clients/partner.png",
   },
 ];
 
@@ -63,7 +61,7 @@ const Client = () => {
             return {
               id: client.id,
               name: attrs.name_en || attrs.name_th || "Client",
-              logo: logo || DEFAULT_CLIENT_LOGO,
+              logo: logo || "/img/clients/partner.png",
             };
           });
 
@@ -102,10 +100,6 @@ const Client = () => {
                 <img
                   src={client.logo}
                   alt={client.name}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = DEFAULT_CLIENT_LOGO;
-                  }}
                   className="max-h-14 object-contain w-auto" // ✅ กัน warning รูปยืด
                 />
               ) : (
