@@ -27,13 +27,6 @@ export default function Teams() {
           subtitle="Collaborating with industry leaders."
         />
         <CardMember category="partner" />
-
-        {/* Intern Section */}
-        <TeamTitle
-          title="Interns"
-          subtitle="Our talented interns making a difference."
-        />
-        <CardMember category="intern" />
       </Container>
       <Footer />
     </div>
